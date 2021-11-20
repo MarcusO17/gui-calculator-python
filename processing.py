@@ -1,11 +1,15 @@
 def add(a: float,b: float) -> float:
-    return 0.0
+    return a + b
 
 def subtract(a: float,b: float) -> float:
-    return 0.0
+    return a - b
 
 def multiply(a: float,b: float) -> float: 
-    return 0.0
+    return a * b
 
 def divide(a: float,b: float) -> float: 
-    return 0.0
+    return a * b
+
+def expResolution(exp: str) -> float:
+    ans = exp
+    return ans
