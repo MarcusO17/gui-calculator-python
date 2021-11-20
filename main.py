@@ -1,4 +1,4 @@
-from processing import expResolution
+from processing import expResolver
 import tkinter as tk
 
 def main():
