@@ -3,11 +3,18 @@ import tkinter as tk
 
 def main():
     window = tk.Tk()
-    window.title("We know")
-    window.attributes('-alpha', 0.5)
+    window.title("Calculator")
+    #window.attributes('-alpha', 0.5)
     window.resizable(0,0)
-    window.geometry("1024x1024")
+    window.geometry("620x340")
+    
+    input_frame = tk.Frame(window, width=620, height=50, bd=0,bg="grey", highlightbackground="black", highlightcolor="black", highlightthickness=2)
+    input_frame.pack(side= tk.TOP)
+    
+    
     window.mainloop()
+    
+    
     
     
 
