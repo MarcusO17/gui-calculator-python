@@ -3,7 +3,7 @@ from typing import List
 import logging
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.WARNING)
 sHand = logging.StreamHandler()
 sHand.setLevel(logging.DEBUG)
 logger.addHandler(sHand)
@@ -50,8 +50,7 @@ def expResolver(exp: List[str]) -> float:
             logger.debug(token)
             stack.append(operation[token](stack.pop(),stack.pop()))
             logger.debug(stack)
-    ans = stack[0]
-    return ans
+    return stack.pop()
 
 def precedence(op: str) -> int:
     if op == '-':
@@ -156,6 +155,9 @@ def conversion(expr:str) -> str:
     output = output.replace('÷','/')
     return output
 
+def compute(expr:str) -> float:
+    return expResolver(expConverter(expr))
+
 if __name__ == '__main__':
     #logger.debug(precedence('*'))
-    logger.debug(expResolver(expConverter('(444×4+4/16)*234+1')))
+    logger.debug(compute('(444×4+4/16)*234+1'))
