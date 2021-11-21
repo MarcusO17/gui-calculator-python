@@ -22,7 +22,7 @@ def add(a: float,b: float) -> float:
 
 #Subtracts the inputs
 def subtract(a: float,b: float) -> float:
-    return a - b
+    return b - a
 
 #Multiplies the inputs
 def multiply(a: float,b: float) -> float: 
@@ -30,11 +30,27 @@ def multiply(a: float,b: float) -> float:
 
 #Divides the inputs
 def divide(a: float,b: float) -> float: 
-    return a * b
+    return b / a
 
 #Resolves a postfix expression into the answer
-def expResolver(exp: str) -> float:
-    ans = exp
+def expResolver(exp: List[str]) -> float:
+    operation = {
+        '+': add,
+        '-': subtract,
+        '*': multiply,
+        '/': divide
+    }
+    stack = []
+    operator = ('+','-','*','/')
+    for token in exp:
+        if token.isnumeric():
+            stack.append(float(token))
+            logger.debug(stack)
+        elif token in operator:
+            logger.debug(token)
+            stack.append(operation[token](stack.pop(),stack.pop()))
+            logger.debug(stack)
+    ans = stack[0]
     return ans
 
 def precedence(op: str) -> int:
@@ -118,7 +134,8 @@ def tokenise(expr: str) -> List[str]:
     operator = ('+','-','*','/','(',')')
     output = []
     temp = ''
-    for char in expr:
+    exp = conversion(expr)
+    for char in exp:
         if char.isnumeric():
             temp += char
             continue
@@ -133,6 +150,12 @@ def tokenise(expr: str) -> List[str]:
         output.append(temp)
     return output
 
+def conversion(expr:str) -> str:
+    output = expr.replace('×','*')
+    output = output.replace('x','*')
+    output = output.replace('÷','/')
+    return output
+
 if __name__ == '__main__':
     #logger.debug(precedence('*'))
-    logger.debug(expConverter('(444*4+4/16)*234+1'))
+    logger.debug(expResolver(expConverter('(444×4+4/16)*234+1')))
