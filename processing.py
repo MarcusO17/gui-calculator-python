@@ -22,7 +22,7 @@ def add(a: float,b: float) -> float:
 
 #Subtracts the inputs
 def subtract(a: float,b: float) -> float:
-    return b - a
+    return a - b
 
 #Multiplies the inputs
 def multiply(a: float,b: float) -> float: 
@@ -30,7 +30,7 @@ def multiply(a: float,b: float) -> float:
 
 #Divides the inputs
 def divide(a: float,b: float) -> float: 
-    return b / a
+    return a / b
 
 #Resolves a postfix expression into the answer
 def expResolver(exp: List[str]) -> float:
